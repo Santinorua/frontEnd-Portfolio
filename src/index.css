@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+/* Pantallas bajas (notebooks, monitores chicos, zoom 125%): se achican tamaños y espacios */
+@custom-variant short (@media (min-width: 768px) and (max-height: 820px));
+@custom-variant tiny (@media (min-width: 768px) and (max-height: 640px));
+
+/* Paleta y tipografías: mismas variables que el archivo de Figma */
+@theme {
+  --color-ink: #161616;            /* bg/page */
+  --color-card: #0f0f0f;           /* bg/card */
+  --color-card-hover: #1f1f1f;     /* bg/raised (hover) */
+  --color-line: #414141;           /* border/default */
+  --color-fg: #ededed;             /* text/primary */
+  --color-muted: #8f8f8f;          /* text/muted */
+  --color-violet: #620089;         /* accent/violet */
+  --color-violet-soft: #c79be0;    /* accent/violet-soft */
+  --color-violet-chip: #2b1036;    /* accent/violet-chip */
+  --color-violet-active: #2a0b3a;  /* accent/violet-active */
+  --color-gold: #bfac1a;           /* accent/yellow */
+
+  --font-sans: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* Alto que ocupan barra + título de sección + márgenes (para calcular el alto de Proyectos) */
+:root {
+  --sec-chrome: 325px;
+}
+@media (min-width: 768px) and (max-height: 820px) {
+  :root { --sec-chrome: 256px; }
+}
+@media (min-width: 768px) and (max-height: 640px) {
+  :root { --sec-chrome: 204px; }
+}
+
+html {
+  scroll-behavior: smooth;
+  /* los links del menú dejan cada sección justo debajo de la barra (80px) */
+  scroll-padding-top: 5rem;
+}
+
+body {
+  overflow-x: clip;
+  background: var(--color-ink);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  /* En Figma, Bricolage Grotesque usa tamaño óptico 14 */
+  font-variation-settings: "opsz" 14, "wdth" 100;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-mono {
+  font-variation-settings: normal;
+}
+
+::selection {
+  background: var(--color-violet);
+  color: #fff;
+}
+
+/* Reveal: estado inicial y final de los elementos que aparecen con el scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Lista de proyectos: oculta la barra nativa (usamos una barra propia) */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal,
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Entrada del proyecto seleccionado */
+@keyframes project-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
