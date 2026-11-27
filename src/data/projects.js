@@ -26,7 +26,7 @@ const projects = [
     description:
       'Mi página personal, diseñada en Figma y programada con React y Tailwind. Tiene una consola animada al inicio y animaciones a medida que uno hace scroll.',
     skills: ['React', 'JavaScript', 'Tailwind'],
-    image: null,
+    image: '/projects/portfolio.webp',
     code: 'https://github.com/Santinorua/frontEnd-Portfolio',
   },
   {
