@@ -108,7 +108,7 @@ export function ProjectListItem({ project, selected, onSelect }) {
         type="button"
         onClick={onSelect}
         aria-pressed={selected}
-        className={`group relative flex h-[104px] w-full short:h-[88px] tiny:h-[76px] flex-col justify-center gap-1.5 border-b border-line pr-6 pl-7 text-left transition-colors duration-200 ${
+        className={`group relative flex h-[104px] w-full cursor-pointer short:h-[88px] tiny:h-[76px] flex-col justify-center gap-1.5 border-b border-line pr-6 pl-7 text-left transition-colors duration-200 ${
           selected ? 'bg-violet-active' : 'hover:bg-card-hover'
         }`}
       >
